@@ -309,21 +309,24 @@ function sendMsg($to,$frm, $sbj, $msg){
 if(isset($_GET['fetch_stream'])){
   $user_id=$_SESSION['logged'];
   $data=array();
-	$q=mysqli_query($conn, "select * from stream where user=$user_id");
+	$q=mysqli_query($conn, "select s.id, s.status, s.title, s.created, u.uname, c.name as cat from shule as s join pic as p join user as u join cat as c on s.author=u.id and s.cover=p.id and s.category=c.id where author=$user_id");
   if($q){
-    $qt=mysqli_query($conn, "select id from stream");//total records
+    $qt=mysqli_query($conn, "select id from shule");//total records
   	$tot_r=mysqli_num_rows($qt);
   	while($r=mysqli_fetch_assoc($q)){
-  		$id=$r['id']; $name=$r['name']; $status=$r['status']; $created=$r['created'];
+  		$id=$r['id']; $title=$r['title']; $status=$r['status']; $published=$r['created']; $author=$r['uname']; $category=$r['cat'];
   		$created=elapsedTime($created);
       switch($status){
         case 0: $status="Draft"; break;
         case 1: $status="Live"; break;
       }
-  		$rec=array("id"=>$id, "name"=>$name, "status"=>$status, "created"=>$created, "tot_r"=>$tot_r);
+  		$rec=array("id"=>$id, "title"=>$title, "status"=>$status, "published"=>$published, "author"=>$author, "category"=>$category, "tot_r"=>$tot_r);
   		array_push($data, $rec);
   	}
   	echo json_encode($data);
+  }
+  else{
+    echo "no";
   }
 }
 

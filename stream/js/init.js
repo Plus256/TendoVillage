@@ -277,17 +277,17 @@ function fetchStream(){
 			for(var k=0; k<3; k++){
 				var col_label=document.createElement("th");
 				if(k==0){
-					var celltext=document.createTextNode("Name");
+					var celltext=document.createTextNode("Title");
 					col_label.appendChild(celltext);
 					tblhead.appendChild(col_label);
 				}
 				if(k==1){
-					var celltext=document.createTextNode("Status");
+					var celltext=document.createTextNode("Category");
 					col_label.appendChild(celltext);
 					tblhead.appendChild(col_label);
 				}
 				if(k==2){
-					var celltext=document.createTextNode("Created");
+					var celltext=document.createTextNode("Status");
 					col_label.appendChild(celltext);
 					tblhead.appendChild(col_label);
 				}
@@ -298,20 +298,20 @@ function fetchStream(){
 				row.setAttribute("id", ""+id+"");
 				//row.addEventListener("click", readStream(id), false); <- it's missbehaving
 				row.setAttribute("onclick", "readStream(this.id);");
-				for(var j=0; j<3; j++){
+				for(var j=0; j<4; j++){
 					var cell=document.createElement("td");
 					if(j==0){
-						var celltext=document.createTextNode(data[i].name);
+						var celltext=document.createTextNode(data[i].title);
 						cell.appendChild(celltext);
 						row.appendChild(cell);
 					}
 					if(j==1){
-						var qty=document.createTextNode(data[i].status);
+						var qty=document.createTextNode(data[i].category);
 						cell.appendChild(qty);
 						row.appendChild(cell);
 					}
 					if(j==2){
-						var celltext=document.createTextNode(data[i].created);
+						var celltext=document.createTextNode(data[i].status);
 						cell.appendChild(celltext);
 						row.appendChild(cell);
 					}

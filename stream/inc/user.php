@@ -12,7 +12,7 @@
     </aside>
     <section id="user_dash_main">
       <?php
-      $q=mysqli_query($conn, "select * from stream where user=$user_id");
+      $q=mysqli_query($conn, "select * from shule where author=$user_id");
       if($q){$r=mysqli_fetch_assoc($q);}
       ?>
       <div id="user_dash_main_cpanel">
